@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Symfony Articles CRUD {% endblock %}
+
+{% block body %}
+    {% if articles %}
+        <table id="articles_table" class="table table-striped mt-4">
+            <thead>
+            <th>Article Title</th>
+            <th>Actions</th>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.title }}</td>
+                    <td>
+                        <a href="article/{{ article.id }}" class="btn btn-dark me-1">Show</a>
+                        <a href="article/{{ article.id }}/edit" class="btn btn-success me-1">Edit</a>
+                        <a href="#" class="btn btn-danger delete-article me-1" data-id="{{ article.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No articles to display</p>
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    <script src="/js/main.js" type="text/javascript"></script>
+{% endblock %}
